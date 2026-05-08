@@ -14,6 +14,11 @@ function navActive(string $href, string $uri): string {
     return ($uri === $h || (str_starts_with($uri, $h . '/') && $h !== '/')) ? ' nav-active' : '';
 }
 
+function navAriaCurrent(string $href, string $uri): string {
+    $h = rtrim($href, '/') ?: '/';
+    return ($uri === $h) ? ' aria-current="page"' : '';
+}
+
 /* ── Breadcrumb builder ─────────────────────── */
 $breadcrumbs = [];
 if ($uri !== '/') {
@@ -115,9 +120,9 @@ if ($uri !== '/') {
         </svg>
       </a>
       <ul class="nav-dropdown" role="list" aria-label="The Practice submenu">
-        <li><a href="/the-practice/mandate"    class="<?= navActive('/the-practice/mandate',    $uri) ?>">Mandate</a></li>
-        <li><a href="/the-practice/foundation" class="<?= navActive('/the-practice/foundation', $uri) ?>">Foundation</a></li>
-        <li><a href="/the-practice/engagement" class="<?= navActive('/the-practice/engagement', $uri) ?>">The Engagement</a></li>
+        <li><a href="/the-practice/mandate"    class="<?= navActive('/the-practice/mandate',    $uri) ?>"<?= navAriaCurrent('/the-practice/mandate',    $uri) ?>>Mandate</a></li>
+        <li><a href="/the-practice/foundation" class="<?= navActive('/the-practice/foundation', $uri) ?>"<?= navAriaCurrent('/the-practice/foundation', $uri) ?>>Foundation</a></li>
+        <li><a href="/the-practice/engagement" class="<?= navActive('/the-practice/engagement', $uri) ?>"<?= navAriaCurrent('/the-practice/engagement', $uri) ?>>The Engagement</a></li>
       </ul>
     </li>
 
@@ -132,11 +137,11 @@ if ($uri !== '/') {
         </svg>
       </a>
       <ul class="nav-dropdown" role="list" aria-label="Expertise submenu">
-        <li><a href="/expertise/vitality"   class="<?= navActive('/expertise/vitality',   $uri) ?>">Vitality</a></li>
-        <li><a href="/expertise/relational" class="<?= navActive('/expertise/relational', $uri) ?>">Relational</a></li>
-        <li><a href="/expertise/leadership" class="<?= navActive('/expertise/leadership', $uri) ?>">Leadership</a></li>
-        <li><a href="/expertise/residence"  class="<?= navActive('/expertise/residence',  $uri) ?>">Residence</a></li>
-        <li><a href="/expertise/mentorship" class="<?= navActive('/expertise/mentorship', $uri) ?>">Mentorship</a></li>
+        <li><a href="/expertise/vitality"   class="<?= navActive('/expertise/vitality',   $uri) ?>"<?= navAriaCurrent('/expertise/vitality',   $uri) ?>>Vitality</a></li>
+        <li><a href="/expertise/relational" class="<?= navActive('/expertise/relational', $uri) ?>"<?= navAriaCurrent('/expertise/relational', $uri) ?>>Relational</a></li>
+        <li><a href="/expertise/leadership" class="<?= navActive('/expertise/leadership', $uri) ?>"<?= navAriaCurrent('/expertise/leadership', $uri) ?>>Leadership</a></li>
+        <li><a href="/expertise/residence"  class="<?= navActive('/expertise/residence',  $uri) ?>"<?= navAriaCurrent('/expertise/residence',  $uri) ?>>Residence</a></li>
+        <li><a href="/expertise/mentorship" class="<?= navActive('/expertise/mentorship', $uri) ?>"<?= navAriaCurrent('/expertise/mentorship', $uri) ?>>Mentorship</a></li>
       </ul>
     </li>
 
@@ -151,14 +156,14 @@ if ($uri !== '/') {
         </svg>
       </a>
       <ul class="nav-dropdown" role="list" aria-label="Custodian submenu">
-        <li><a href="/custodian"     class="<?= navActive('/custodian',     $uri) ?>">Serena Du Roch</a></li>
-        <li><a href="/consideration" class="<?= navActive('/consideration', $uri) ?>">Consideration</a></li>
+        <li><a href="/custodian"     class="<?= navActive('/custodian',     $uri) ?>"<?= navAriaCurrent('/custodian',     $uri) ?>>Serena Du Roch</a></li>
+        <li><a href="/consideration" class="<?= navActive('/consideration', $uri) ?>"<?= navAriaCurrent('/consideration', $uri) ?>>Consideration</a></li>
       </ul>
     </li>
 
     <!-- Private Inquiry CTA -->
     <li>
-      <a href="/inquiry" class="nav-inquiry<?= navActive('/inquiry', $uri) ?>">Private Inquiry</a>
+      <a href="/inquiry" class="nav-inquiry<?= navActive('/inquiry', $uri) ?>"<?= navAriaCurrent('/inquiry', $uri) ?>>Private Inquiry</a>
     </li>
 
   </ul>
@@ -181,7 +186,7 @@ if ($uri !== '/') {
 
   <nav class="nav-mobile-inner" aria-label="Mobile navigation links">
 
-    <a href="/" class="mob-link<?= $uri === '/' ? ' mob-active' : '' ?>">Home</a>
+    <a href="/" class="mob-link<?= $uri === '/' ? ' mob-active' : '' ?>"<?= $uri === '/' ? ' aria-current="page"' : '' ?>>Home</a>
 
     <!-- Practice accordion -->
     <div class="mob-group">
@@ -341,15 +346,24 @@ if ($uri !== '/') {
         }, 80);
       });
 
-      // Click on trigger: navigate to href (don't prevent default on desktop)
-      // but allow toggle if already open
-      trigger.addEventListener('click', (e) => {
-        const isOpen = item.classList.contains('dropdown-open');
-        if (isOpen) {
-          // Already open via hover — let the link navigate
-          return;
-        }
-      });
+      // Click on chevron: toggle dropdown without navigating.
+      // Click anywhere else on trigger: navigate (default link behavior).
+      const chev = trigger.querySelector('.nav-chevron');
+      if (chev) {
+        chev.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const isOpen = item.classList.contains('dropdown-open');
+          items.forEach(i => {
+            i.classList.remove('dropdown-open');
+            i.querySelector('.nav-top').setAttribute('aria-expanded', 'false');
+          });
+          if (!isOpen) {
+            item.classList.add('dropdown-open');
+            trigger.setAttribute('aria-expanded', 'true');
+          }
+        });
+      }
 
     } else {
       /* ── Touch: click-only toggle ── */
@@ -486,15 +500,39 @@ if ($uri !== '/') {
 /* ══════════════════════════════════════════════
    SMOOTH SCROLL for anchor links
 ══════════════════════════════════════════════ */
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', (e) => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      const navH = document.getElementById('siteNav').offsetHeight;
-      const top  = target.getBoundingClientRect().top + window.scrollY - navH - 24;
-      window.scrollTo({ top, behavior: 'smooth' });
-    }
+(function () {
+  const nav = document.getElementById('siteNav');
+
+  function scrollToTarget(target, smooth = true) {
+    const navH = nav ? nav.offsetHeight : 0;
+    const top  = target.getBoundingClientRect().top + window.scrollY - navH - 24;
+    window.scrollTo({ top, behavior: smooth ? 'smooth' : 'auto' });
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const href = a.getAttribute('href');
+      if (href.length < 2) return;
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        scrollToTarget(target);
+        history.pushState(null, '', href);
+      }
+    });
   });
-});
+
+  // Initial-load: if URL has a hash, offset for sticky nav
+  if (window.location.hash && window.location.hash.length > 1) {
+    try {
+      const target = document.querySelector(window.location.hash);
+      if (target) {
+        // Wait for layout/fonts then jump to the corrected position
+        window.addEventListener('load', () => {
+          requestAnimationFrame(() => scrollToTarget(target, false));
+        });
+      }
+    } catch (e) { /* invalid selector — ignore */ }
+  }
+})();
 </script>
