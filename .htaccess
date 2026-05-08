@@ -1,0 +1,38 @@
+Options -Indexes
+RewriteEngine On
+RewriteBase /
+
+ErrorDocument 404 /404.php
+
+# Static files — pass through
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# OG image
+RewriteRule ^og-image\.php$ og-image.php [L]
+
+# Homepage
+RewriteRule ^$ index.php [L]
+
+# The Practice
+RewriteRule ^the-practice/mandate/?$ the-practice/mandate.php [L,QSA]
+RewriteRule ^the-practice/foundation/?$ the-practice/foundation.php [L,QSA]
+RewriteRule ^the-practice/engagement/?$ the-practice/engagement.php [L,QSA]
+
+# Expertise
+RewriteRule ^expertise/vitality/?$ expertise/vitality.php [L,QSA]
+RewriteRule ^expertise/relational/?$ expertise/relational.php [L,QSA]
+RewriteRule ^expertise/leadership/?$ expertise/leadership.php [L,QSA]
+RewriteRule ^expertise/residence/?$ expertise/residence.php [L,QSA]
+RewriteRule ^expertise/mentorship/?$ expertise/mentorship.php [L,QSA]
+
+# Custodian
+RewriteRule ^custodian/?$ custodian.php [L,QSA]
+RewriteRule ^consideration/?$ consideration.php [L,QSA]
+
+# Inquiry
+RewriteRule ^inquiry/?$ inquiry.php [L,QSA]
+
+# 404
+RewriteRule ^404/?$ 404.php [L]
