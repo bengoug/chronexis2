@@ -1,5 +1,4 @@
 <?php
-// 火 FEU — clarté, décision, commandement, lumière dans l'obscurité
 $pageTitle = "Leadership — Chronexis Private Advisory";
 $pageDesc  = "Every organisation is a portrait of the person who leads it. Strategic counsel for those whose complexity has outgrown everything conventional advisory was built to hold.";
 $pageUrl   = "https://chronexis.com/expertise/leadership";
@@ -7,7 +6,6 @@ $ogImage   = "https://chronexis.com/og-image.php?page=leadership";
 include '../header.php';
 ?>
 
-<!-- PAGE HERO — 火 Feu : bougie dans l'obscurité, clarté, décision -->
 <section class="page-hero">
   <img
     class="page-hero-img"
@@ -18,11 +16,10 @@ include '../header.php';
   <div class="page-hero-overlay"></div>
   <div class="page-hero-content">
     <p class="eyebrow">Expertise · 03</p>
-    <h1>Every organisation is a portrait of the person who leads it.</h1>
+    <h1>Every organisation is a portrait<br>of the person who leads it.</h1>
   </div>
 </section>
 
-<!-- SERENA QUOTE ON LEADERSHIP -->
 <section class="opening-quote reveal-on-scroll">
   <div class="container">
     <blockquote>
@@ -32,7 +29,6 @@ include '../header.php';
   </div>
 </section>
 
-<!-- OPENING -->
 <section class="body-content reveal-on-scroll">
   <div class="container">
     <div class="gold-rule"></div>
@@ -43,7 +39,6 @@ include '../header.php';
   </div>
 </section>
 
-<!-- THE WEIGHT OF COMMAND -->
 <section class="split reveal-on-scroll">
   <div class="split-img">
     <img
@@ -62,7 +57,6 @@ include '../header.php';
   </div>
 </section>
 
-<!-- THE ORGANISATION -->
 <section class="body-content reveal-on-scroll" style="background:var(--bg-warm);">
   <div class="container">
     <p class="eyebrow">When the Organisation Stops Working</p>
@@ -76,7 +70,6 @@ include '../header.php';
   </div>
 </section>
 
-<!-- FULL IMAGE — silhouette by the sea, Tao : facing the horizon alone -->
 <div class="img-band reveal-on-scroll">
   <img
     src="https://images.pexels.com/photos/19022499/pexels-photo-19022499.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=500&w=1400"
@@ -85,7 +78,6 @@ include '../header.php';
   >
 </div>
 
-<!-- UNDER PRESSURE -->
 <section class="body-content reveal-on-scroll">
   <div class="container">
     <p class="eyebrow">The Leader Under Pressure</p>
@@ -97,7 +89,6 @@ include '../header.php';
   </div>
 </section>
 
-<!-- WHAT WORK DOES TO EVERYTHING ELSE -->
 <section class="body-content reveal-on-scroll" style="background:var(--bg-warm);">
   <div class="container">
     <p class="eyebrow">What Work Does to Everything Else</p>
@@ -111,7 +102,6 @@ include '../header.php';
   </div>
 </section>
 
-<!-- WHAT COMES AFTER -->
 <section class="body-content reveal-on-scroll">
   <div class="container">
     <p class="eyebrow">What Comes After</p>
@@ -122,15 +112,6 @@ include '../header.php';
     <blockquote style="font-family:var(--serif);font-style:italic;border-left:1px solid var(--gold);padding-left:2rem;margin:2.5rem 0;color:var(--text);">
       The most consequential decision a leader will ever make is not what to build — but what to become when the building is done.
     </blockquote>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-section reveal-on-scroll">
-  <div class="container">
-    <h2>The heaviest thing a leader carries is the one they cannot put down in front of anyone.</h2>
-    <p>Until now.</p>
-    <a href="/inquiry" class="btn-gold">Submit a Private Inquiry</a>
   </div>
 </section>
 
