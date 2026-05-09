@@ -11,42 +11,10 @@ $uri = rtrim($uri, '/') ?: '/';
 
 function navActive(string $href, string $uri): string {
     $h = rtrim($href, '/') ?: '/';
-    return ($uri === $h || (str_starts_with($uri, $h . '/') && $h !== '/')) ? ' nav-active' : '';
-}
-
-function navAriaCurrent(string $href, string $uri): string {
-    $h = rtrim($href, '/') ?: '/';
-    return ($uri === $h) ? ' aria-current="page"' : '';
-}
-
-/* ── Breadcrumb builder ─────────────────────── */
-$breadcrumbs = [];
-if ($uri !== '/') {
-    $breadcrumbs[] = ['Home', '/'];
-    $parts = explode('/', trim($uri, '/'));
-    $map = [
-        'the-practice' => 'The Practice',
-        'mandate'      => 'Mandate',
-        'foundation'   => 'Foundation',
-        'engagement'   => 'The Engagement',
-        'expertise'    => 'Expertise',
-        'vitality'     => 'Vitality',
-        'relational'   => 'Relational',
-        'leadership'   => 'Leadership',
-        'residence'    => 'Residence',
-        'mentorship'   => 'Mentorship',
-        'custodian'    => 'Serena Du Roch',
-        'consideration'=> 'Consideration',
-        'inquiry'      => 'Private Inquiry',
-        'gallery'      => 'Atelier',
-    ];
-    $path = '';
-    foreach ($parts as $i => $part) {
-        $path .= '/' . $part;
-        $label = $map[$part] ?? ucfirst(str_replace('-', ' ', $part));
-        $isLast = ($i === count($parts) - 1);
-        $breadcrumbs[] = [$label, $isLast ? null : $path];
+    if ($h === '/') {
+        return $uri === '/' ? ' nav-active' : '';
     }
+    return ($uri === $h || str_starts_with($uri, $h . '/')) ? ' nav-active' : '';
 }
 ?>
 <!DOCTYPE html>
@@ -109,6 +77,11 @@ if ($uri !== '/') {
   <!-- Desktop links -->
   <ul class="nav-links" role="list">
 
+    <!-- Home -->
+    <li>
+      <a href="/" class="nav-top<?= navActive('/', $uri) ?>"<?= $uri === '/' ? ' aria-current="page"' : '' ?>>Home</a>
+    </li>
+
     <!-- The Practice -->
     <li class="has-dropdown">
       <a href="/the-practice/mandate"
@@ -120,9 +93,9 @@ if ($uri !== '/') {
         </svg>
       </a>
       <ul class="nav-dropdown" role="list" aria-label="The Practice submenu">
-        <li><a href="/the-practice/mandate"    class="<?= navActive('/the-practice/mandate',    $uri) ?>"<?= navAriaCurrent('/the-practice/mandate',    $uri) ?>>Mandate</a></li>
-        <li><a href="/the-practice/foundation" class="<?= navActive('/the-practice/foundation', $uri) ?>"<?= navAriaCurrent('/the-practice/foundation', $uri) ?>>Foundation</a></li>
-        <li><a href="/the-practice/engagement" class="<?= navActive('/the-practice/engagement', $uri) ?>"<?= navAriaCurrent('/the-practice/engagement', $uri) ?>>The Engagement</a></li>
+        <li><a href="/the-practice/mandate"    class="<?= navActive('/the-practice/mandate',    $uri) ?>">Mandate</a></li>
+        <li><a href="/the-practice/foundation" class="<?= navActive('/the-practice/foundation', $uri) ?>">Foundation</a></li>
+        <li><a href="/the-practice/engagement" class="<?= navActive('/the-practice/engagement', $uri) ?>">The Engagement</a></li>
       </ul>
     </li>
 
@@ -137,18 +110,18 @@ if ($uri !== '/') {
         </svg>
       </a>
       <ul class="nav-dropdown" role="list" aria-label="Expertise submenu">
-        <li><a href="/expertise/vitality"   class="<?= navActive('/expertise/vitality',   $uri) ?>"<?= navAriaCurrent('/expertise/vitality',   $uri) ?>>Vitality</a></li>
-        <li><a href="/expertise/relational" class="<?= navActive('/expertise/relational', $uri) ?>"<?= navAriaCurrent('/expertise/relational', $uri) ?>>Relational</a></li>
-        <li><a href="/expertise/leadership" class="<?= navActive('/expertise/leadership', $uri) ?>"<?= navAriaCurrent('/expertise/leadership', $uri) ?>>Leadership</a></li>
-        <li><a href="/expertise/residence"  class="<?= navActive('/expertise/residence',  $uri) ?>"<?= navAriaCurrent('/expertise/residence',  $uri) ?>>Residence</a></li>
-        <li><a href="/expertise/mentorship" class="<?= navActive('/expertise/mentorship', $uri) ?>"<?= navAriaCurrent('/expertise/mentorship', $uri) ?>>Mentorship</a></li>
+        <li><a href="/expertise/vitality"   class="<?= navActive('/expertise/vitality',   $uri) ?>">Vitality</a></li>
+        <li><a href="/expertise/relational" class="<?= navActive('/expertise/relational', $uri) ?>">Relational</a></li>
+        <li><a href="/expertise/leadership" class="<?= navActive('/expertise/leadership', $uri) ?>">Leadership</a></li>
+        <li><a href="/expertise/residence"  class="<?= navActive('/expertise/residence',  $uri) ?>">Residence</a></li>
+        <li><a href="/expertise/mentorship" class="<?= navActive('/expertise/mentorship', $uri) ?>">Mentorship</a></li>
       </ul>
     </li>
 
     <!-- Custodian -->
     <li class="has-dropdown">
       <a href="/custodian"
-         class="nav-top<?= navActive('/custodian', $uri) ?>"
+         class="nav-top<?= navActive('/custodian', $uri) ?><?= navActive('/consideration', $uri) ?>"
          aria-haspopup="true" aria-expanded="false">
         Custodian
         <svg class="nav-chevron" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
@@ -156,14 +129,14 @@ if ($uri !== '/') {
         </svg>
       </a>
       <ul class="nav-dropdown" role="list" aria-label="Custodian submenu">
-        <li><a href="/custodian"     class="<?= navActive('/custodian',     $uri) ?>"<?= navAriaCurrent('/custodian',     $uri) ?>>Serena Du Roch</a></li>
-        <li><a href="/consideration" class="<?= navActive('/consideration', $uri) ?>"<?= navAriaCurrent('/consideration', $uri) ?>>Consideration</a></li>
+        <li><a href="/custodian"     class="<?= navActive('/custodian',     $uri) ?>">Serena Du Roch</a></li>
+        <li><a href="/consideration" class="<?= navActive('/consideration', $uri) ?>">Consideration</a></li>
       </ul>
     </li>
 
     <!-- Private Inquiry CTA -->
     <li>
-      <a href="/inquiry" class="nav-inquiry<?= navActive('/inquiry', $uri) ?>"<?= navAriaCurrent('/inquiry', $uri) ?>>Private Inquiry</a>
+      <a href="/inquiry" class="nav-inquiry<?= navActive('/inquiry', $uri) ?>">Private Inquiry</a>
     </li>
 
   </ul>
@@ -186,7 +159,7 @@ if ($uri !== '/') {
 
   <nav class="nav-mobile-inner" aria-label="Mobile navigation links">
 
-    <a href="/" class="mob-link<?= $uri === '/' ? ' mob-active' : '' ?>"<?= $uri === '/' ? ' aria-current="page"' : '' ?>>Home</a>
+    <a href="/" class="mob-link<?= $uri === '/' ? ' mob-active' : '' ?>">Home</a>
 
     <!-- Practice accordion -->
     <div class="mob-group">
@@ -242,24 +215,6 @@ if ($uri !== '/') {
 
 </div>
 
-<!-- ══ BREADCRUMBS (inner pages only) ══════════ -->
-<?php if (count($breadcrumbs) > 1): ?>
-<nav class="breadcrumb-nav" aria-label="Breadcrumb">
-  <div class="container">
-    <ol class="breadcrumb" role="list">
-      <?php foreach ($breadcrumbs as $i => [$label, $href]): ?>
-        <?php if ($href): ?>
-          <li><a href="<?= htmlspecialchars($href) ?>"><?= htmlspecialchars($label) ?></a></li>
-          <li aria-hidden="true" class="breadcrumb-sep">—</li>
-        <?php else: ?>
-          <li class="breadcrumb-current" aria-current="page"><?= htmlspecialchars($label) ?></li>
-        <?php endif ?>
-      <?php endforeach ?>
-    </ol>
-  </div>
-</nav>
-<?php endif ?>
-
 <script>
 /* ══════════════════════════════════════════════
    NAV: hide on scroll-down, show on scroll-up
@@ -289,19 +244,9 @@ if ($uri !== '/') {
 
 /* ══════════════════════════════════════════════
    DROPDOWN: hover (CSS) + click fallback (JS)
-   
-   Strategy:
-   - CSS :hover handles the show/hide naturally
-   - JS adds `dropdown-open` class on CLICK for
-     touch devices that don't support :hover
-   - A `leaveTimer` delays hiding so the mouse
-     can travel from trigger → dropdown without
-     the menu collapsing
 ══════════════════════════════════════════════ */
 (function () {
   const items = document.querySelectorAll('.has-dropdown');
-
-  // Detect touch-primary devices
   const isTouch = window.matchMedia('(hover: none)').matches;
 
   items.forEach(item => {
@@ -310,12 +255,8 @@ if ($uri !== '/') {
     let leaveTimer = null;
 
     if (!isTouch) {
-      /* ── Desktop: hover with delayed close ── */
-
       item.addEventListener('mouseenter', () => {
-        // Cancel any pending close
         clearTimeout(leaveTimer);
-        // Close others
         items.forEach(i => {
           if (i !== item) {
             i.classList.remove('dropdown-open');
@@ -327,17 +268,13 @@ if ($uri !== '/') {
       });
 
       item.addEventListener('mouseleave', () => {
-        // Delay closing so mouse can travel into the dropdown
         leaveTimer = setTimeout(() => {
           item.classList.remove('dropdown-open');
           trigger.setAttribute('aria-expanded', 'false');
-        }, 120); // 120ms grace period
+        }, 120);
       });
 
-      // If mouse enters the dropdown itself, cancel close
-      dropdown.addEventListener('mouseenter', () => {
-        clearTimeout(leaveTimer);
-      });
+      dropdown.addEventListener('mouseenter', () => clearTimeout(leaveTimer));
 
       dropdown.addEventListener('mouseleave', () => {
         leaveTimer = setTimeout(() => {
@@ -346,30 +283,9 @@ if ($uri !== '/') {
         }, 80);
       });
 
-      // Click on chevron: toggle dropdown without navigating.
-      // Click anywhere else on trigger: navigate (default link behavior).
-      const chev = trigger.querySelector('.nav-chevron');
-      if (chev) {
-        chev.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          const isOpen = item.classList.contains('dropdown-open');
-          items.forEach(i => {
-            i.classList.remove('dropdown-open');
-            i.querySelector('.nav-top').setAttribute('aria-expanded', 'false');
-          });
-          if (!isOpen) {
-            item.classList.add('dropdown-open');
-            trigger.setAttribute('aria-expanded', 'true');
-          }
-        });
-      }
-
     } else {
-      /* ── Touch: click-only toggle ── */
       trigger.addEventListener('click', (e) => {
         const isOpen = item.classList.contains('dropdown-open');
-        // Close all
         items.forEach(i => {
           i.classList.remove('dropdown-open');
           i.querySelector('.nav-top').setAttribute('aria-expanded', 'false');
@@ -377,13 +293,11 @@ if ($uri !== '/') {
         if (!isOpen) {
           item.classList.add('dropdown-open');
           trigger.setAttribute('aria-expanded', 'true');
-          e.preventDefault(); // Prevent navigation on first tap (open menu)
+          e.preventDefault();
         }
-        // Second tap navigates naturally
       });
     }
 
-    /* ── Keyboard navigation ── */
     trigger.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -395,7 +309,6 @@ if ($uri !== '/') {
         if (!isOpen) {
           item.classList.add('dropdown-open');
           trigger.setAttribute('aria-expanded', 'true');
-          // Focus first item
           const first = dropdown.querySelector('a');
           if (first) first.focus();
         }
@@ -407,7 +320,6 @@ if ($uri !== '/') {
       }
     });
 
-    // Tab through dropdown items, close on Escape
     dropdown.querySelectorAll('a').forEach((link, idx, all) => {
       link.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
@@ -415,7 +327,6 @@ if ($uri !== '/') {
           trigger.setAttribute('aria-expanded', 'false');
           trigger.focus();
         }
-        // Close when tabbing past last item
         if (e.key === 'Tab' && !e.shiftKey && idx === all.length - 1) {
           item.classList.remove('dropdown-open');
           trigger.setAttribute('aria-expanded', 'false');
@@ -424,7 +335,6 @@ if ($uri !== '/') {
     });
   });
 
-  /* ── Close on click outside ── */
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.has-dropdown')) {
       items.forEach(i => {
@@ -434,7 +344,6 @@ if ($uri !== '/') {
     }
   });
 
-  /* ── Close on Escape anywhere ── */
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       items.forEach(i => {
@@ -480,7 +389,6 @@ if ($uri !== '/') {
     if (e.key === 'Escape' && mobileNav.classList.contains('open')) closeMenu();
   });
 
-  /* Mobile accordion groups */
   document.querySelectorAll('.mob-group-toggle').forEach(btn => {
     btn.addEventListener('click', () => {
       const group  = btn.closest('.mob-group');
@@ -500,39 +408,15 @@ if ($uri !== '/') {
 /* ══════════════════════════════════════════════
    SMOOTH SCROLL for anchor links
 ══════════════════════════════════════════════ */
-(function () {
-  const nav = document.getElementById('siteNav');
-
-  function scrollToTarget(target, smooth = true) {
-    const navH = nav ? nav.offsetHeight : 0;
-    const top  = target.getBoundingClientRect().top + window.scrollY - navH - 24;
-    window.scrollTo({ top, behavior: smooth ? 'smooth' : 'auto' });
-  }
-
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', (e) => {
-      const href = a.getAttribute('href');
-      if (href.length < 2) return;
-      const target = document.querySelector(href);
-      if (target) {
-        e.preventDefault();
-        scrollToTarget(target);
-        history.pushState(null, '', href);
-      }
-    });
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      const navH = document.getElementById('siteNav').offsetHeight;
+      const top  = target.getBoundingClientRect().top + window.scrollY - navH - 24;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
   });
-
-  // Initial-load: if URL has a hash, offset for sticky nav
-  if (window.location.hash && window.location.hash.length > 1) {
-    try {
-      const target = document.querySelector(window.location.hash);
-      if (target) {
-        // Wait for layout/fonts then jump to the corrected position
-        window.addEventListener('load', () => {
-          requestAnimationFrame(() => scrollToTarget(target, false));
-        });
-      }
-    } catch (e) { /* invalid selector — ignore */ }
-  }
-})();
+});
 </script>
