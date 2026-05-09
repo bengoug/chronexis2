@@ -49,6 +49,7 @@ function navActive(string $href, string $uri): string {
 
 <!-- Styles -->
 <link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/hero-home-fix.css">
 
 <!-- Schema.org -->
 <script type="application/ld+json">
