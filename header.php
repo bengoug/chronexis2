@@ -45,6 +45,7 @@ function navActive(string $href, string $uri): string {
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 
 <!-- Styles -->
 <link rel="stylesheet" href="/styles.css">
@@ -69,10 +70,18 @@ function navActive(string $href, string $uri): string {
 </head>
 <body>
 
+<!-- ══ PROGRESS BAR ═════════════════════════════ -->
+<div class="progress-bar" id="progressBar" role="progressbar" aria-hidden="true" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+  <div class="progress-bar-fill" id="progressFill"></div>
+</div>
+
 <!-- ══ NAV ══════════════════════════════════════ -->
 <nav class="nav" id="siteNav" role="navigation" aria-label="Main navigation">
 
-  <a href="/" class="nav-brand" aria-label="Chronexis — Home">Chron<span>e</span>xis</a>
+  <a href="/" class="nav-brand" aria-label="Chronexis — Home">
+    <span class="nav-brand-name">Chron<em>e</em>xis</span>
+    <span class="nav-brand-sub">Private Strategic Advisory</span>
+  </a>
 
   <!-- Desktop links -->
   <ul class="nav-links" role="list">
@@ -99,8 +108,8 @@ function navActive(string $href, string $uri): string {
       </ul>
     </li>
 
-    <!-- Expertise -->
-    <li class="has-dropdown">
+    <!-- Expertise — MEGA MENU -->
+    <li class="has-dropdown has-mega">
       <a href="/expertise/vitality"
          class="nav-top<?= navActive('/expertise', $uri) ?>"
          aria-haspopup="true" aria-expanded="false">
@@ -109,13 +118,69 @@ function navActive(string $href, string $uri): string {
           <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
         </svg>
       </a>
-      <ul class="nav-dropdown" role="list" aria-label="Expertise submenu">
-        <li><a href="/expertise/vitality"   class="<?= navActive('/expertise/vitality',   $uri) ?>">Vitality</a></li>
-        <li><a href="/expertise/relational" class="<?= navActive('/expertise/relational', $uri) ?>">Relational</a></li>
-        <li><a href="/expertise/leadership" class="<?= navActive('/expertise/leadership', $uri) ?>">Leadership</a></li>
-        <li><a href="/expertise/residence"  class="<?= navActive('/expertise/residence',  $uri) ?>">Residence</a></li>
-        <li><a href="/expertise/mentorship" class="<?= navActive('/expertise/mentorship', $uri) ?>">Mentorship</a></li>
-      </ul>
+      <div class="nav-mega" aria-label="Expertise submenu">
+        <div class="mega-grid">
+
+          <a href="/expertise/vitality" class="mega-item<?= str_contains($uri, 'vitality') ? ' mega-active' : '' ?>">
+            <div class="mega-img-wrap">
+              <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=220&q=80" alt="Bamboo forest — Vitality" width="110" height="110" loading="lazy">
+            </div>
+            <div class="mega-text">
+              <span class="mega-element">木 Wood</span>
+              <strong class="mega-name">Vitality</strong>
+              <span class="mega-desc">Foundation. Energy. Presence.</span>
+            </div>
+          </a>
+
+          <a href="/expertise/relational" class="mega-item<?= str_contains($uri, 'relational') ? ' mega-active' : '' ?>">
+            <div class="mega-img-wrap">
+              <img src="https://images.unsplash.com/photo-1522748906645-95d8adfd52c7?w=220&q=80" alt="Cherry blossom — Relational" width="110" height="110" loading="lazy">
+            </div>
+            <div class="mega-text">
+              <span class="mega-element">火 Fire</span>
+              <strong class="mega-name">Relational</strong>
+              <span class="mega-desc">Self. Others. Connection.</span>
+            </div>
+          </a>
+
+          <a href="/expertise/leadership" class="mega-item<?= str_contains($uri, 'leadership') ? ' mega-active' : '' ?>">
+            <div class="mega-img-wrap">
+              <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=220&q=80" alt="Mountain peak — Leadership" width="110" height="110" loading="lazy">
+            </div>
+            <div class="mega-text">
+              <span class="mega-element">金 Metal</span>
+              <strong class="mega-name">Leadership</strong>
+              <span class="mega-desc">Command. Clarity. Legacy.</span>
+            </div>
+          </a>
+
+          <a href="/expertise/residence" class="mega-item<?= str_contains($uri, 'residence') ? ' mega-active' : '' ?>">
+            <div class="mega-img-wrap">
+              <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=220&q=80" alt="Japanese garden — Residence" width="110" height="110" loading="lazy">
+            </div>
+            <div class="mega-text">
+              <span class="mega-element">土 Earth</span>
+              <strong class="mega-name">Residence</strong>
+              <span class="mega-desc">Immersion. Stillness. Reset.</span>
+            </div>
+          </a>
+
+          <a href="/expertise/mentorship" class="mega-item<?= str_contains($uri, 'mentorship') ? ' mega-active' : '' ?>">
+            <div class="mega-img-wrap">
+              <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=220&q=80" alt="Misty forest — Mentorship" width="110" height="110" loading="lazy">
+            </div>
+            <div class="mega-text">
+              <span class="mega-element">水 Water</span>
+              <strong class="mega-name">Mentorship</strong>
+              <span class="mega-desc">Transmission. Depth. Vision.</span>
+            </div>
+          </a>
+
+        </div>
+        <div class="mega-footer">
+          <a href="/expertise/vitality" class="mega-footer-link">Explore the full expertise →</a>
+        </div>
+      </div>
     </li>
 
     <!-- Custodian -->
@@ -211,212 +276,9 @@ function navActive(string $href, string $uri): string {
 
   </nav>
 
-  <p class="nav-mobile-brand">Chron<span>e</span>xis</p>
+  <div class="nav-mobile-brand">
+    <span class="nav-brand-name">Chron<em>e</em>xis</span>
+    <span class="nav-brand-sub">Private Strategic Advisory</span>
+  </div>
 
 </div>
-
-<script>
-/* ══════════════════════════════════════════════
-   NAV: hide on scroll-down, show on scroll-up
-══════════════════════════════════════════════ */
-(function () {
-  const nav   = document.getElementById('siteNav');
-  let lastY   = window.scrollY;
-  let ticking = false;
-
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        const y = window.scrollY;
-        nav.classList.toggle('scrolled', y > 40);
-        if (y > 120) {
-          nav.classList.toggle('nav-hidden', y > lastY);
-        } else {
-          nav.classList.remove('nav-hidden');
-        }
-        lastY   = y;
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }, { passive: true });
-})();
-
-/* ══════════════════════════════════════════════
-   DROPDOWN: hover (CSS) + click fallback (JS)
-══════════════════════════════════════════════ */
-(function () {
-  const items = document.querySelectorAll('.has-dropdown');
-  const isTouch = window.matchMedia('(hover: none)').matches;
-
-  items.forEach(item => {
-    const trigger  = item.querySelector('.nav-top');
-    const dropdown = item.querySelector('.nav-dropdown');
-    let leaveTimer = null;
-
-    if (!isTouch) {
-      item.addEventListener('mouseenter', () => {
-        clearTimeout(leaveTimer);
-        items.forEach(i => {
-          if (i !== item) {
-            i.classList.remove('dropdown-open');
-            i.querySelector('.nav-top').setAttribute('aria-expanded', 'false');
-          }
-        });
-        item.classList.add('dropdown-open');
-        trigger.setAttribute('aria-expanded', 'true');
-      });
-
-      item.addEventListener('mouseleave', () => {
-        leaveTimer = setTimeout(() => {
-          item.classList.remove('dropdown-open');
-          trigger.setAttribute('aria-expanded', 'false');
-        }, 120);
-      });
-
-      dropdown.addEventListener('mouseenter', () => clearTimeout(leaveTimer));
-
-      dropdown.addEventListener('mouseleave', () => {
-        leaveTimer = setTimeout(() => {
-          item.classList.remove('dropdown-open');
-          trigger.setAttribute('aria-expanded', 'false');
-        }, 80);
-      });
-
-    } else {
-      trigger.addEventListener('click', (e) => {
-        const isOpen = item.classList.contains('dropdown-open');
-        items.forEach(i => {
-          i.classList.remove('dropdown-open');
-          i.querySelector('.nav-top').setAttribute('aria-expanded', 'false');
-        });
-        if (!isOpen) {
-          item.classList.add('dropdown-open');
-          trigger.setAttribute('aria-expanded', 'true');
-          e.preventDefault();
-        }
-      });
-    }
-
-    trigger.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        const isOpen = item.classList.contains('dropdown-open');
-        items.forEach(i => {
-          i.classList.remove('dropdown-open');
-          i.querySelector('.nav-top').setAttribute('aria-expanded', 'false');
-        });
-        if (!isOpen) {
-          item.classList.add('dropdown-open');
-          trigger.setAttribute('aria-expanded', 'true');
-          const first = dropdown.querySelector('a');
-          if (first) first.focus();
-        }
-      }
-      if (e.key === 'Escape') {
-        item.classList.remove('dropdown-open');
-        trigger.setAttribute('aria-expanded', 'false');
-        trigger.focus();
-      }
-    });
-
-    dropdown.querySelectorAll('a').forEach((link, idx, all) => {
-      link.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          item.classList.remove('dropdown-open');
-          trigger.setAttribute('aria-expanded', 'false');
-          trigger.focus();
-        }
-        if (e.key === 'Tab' && !e.shiftKey && idx === all.length - 1) {
-          item.classList.remove('dropdown-open');
-          trigger.setAttribute('aria-expanded', 'false');
-        }
-      });
-    });
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.has-dropdown')) {
-      items.forEach(i => {
-        i.classList.remove('dropdown-open');
-        i.querySelector('.nav-top').setAttribute('aria-expanded', 'false');
-      });
-    }
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      items.forEach(i => {
-        i.classList.remove('dropdown-open');
-        i.querySelector('.nav-top').setAttribute('aria-expanded', 'false');
-      });
-    }
-  });
-})();
-
-/* ══════════════════════════════════════════════
-   MOBILE MENU
-══════════════════════════════════════════════ */
-(function () {
-  const burger    = document.getElementById('burgerBtn');
-  const mobileNav = document.getElementById('mobileNav');
-  const closeBtn  = document.getElementById('mobileClose');
-
-  function openMenu() {
-    mobileNav.classList.add('open');
-    burger.classList.add('is-open');
-    burger.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden';
-    closeBtn.focus();
-  }
-
-  function closeMenu() {
-    mobileNav.classList.remove('open');
-    burger.classList.remove('is-open');
-    burger.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-    burger.focus();
-  }
-
-  burger.addEventListener('click', openMenu);
-  closeBtn.addEventListener('click', closeMenu);
-
-  mobileNav.addEventListener('click', (e) => {
-    if (e.target === mobileNav) closeMenu();
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileNav.classList.contains('open')) closeMenu();
-  });
-
-  document.querySelectorAll('.mob-group-toggle').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const group  = btn.closest('.mob-group');
-      const isOpen = group.classList.contains('mob-open');
-      document.querySelectorAll('.mob-group').forEach(g => {
-        g.classList.remove('mob-open');
-        g.querySelector('.mob-group-toggle').setAttribute('aria-expanded', 'false');
-      });
-      if (!isOpen) {
-        group.classList.add('mob-open');
-        btn.setAttribute('aria-expanded', 'true');
-      }
-    });
-  });
-})();
-
-/* ══════════════════════════════════════════════
-   SMOOTH SCROLL for anchor links
-══════════════════════════════════════════════ */
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', (e) => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      const navH = document.getElementById('siteNav').offsetHeight;
-      const top  = target.getBoundingClientRect().top + window.scrollY - navH - 24;
-      window.scrollTo({ top, behavior: 'smooth' });
-    }
-  });
-});
-</script>

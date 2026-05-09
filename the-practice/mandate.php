@@ -6,7 +6,6 @@ $ogImage   = "https://chronexis.com/og-image.php?page=mandate";
 include '../header.php';
 ?>
 
-<!-- PAGE HERO — Tao : lac de montagne, silence, sagesse -->
 <section class="page-hero">
   <img
     class="page-hero-img"
@@ -21,7 +20,6 @@ include '../header.php';
   </div>
 </section>
 
-<!-- OPENING -->
 <section class="body-content reveal-on-scroll">
   <div class="container">
     <div class="gold-rule"></div>
@@ -33,7 +31,6 @@ include '../header.php';
   </div>
 </section>
 
-<!-- FULL IMAGE — Confucianism : le chemin brumeux, la voie -->
 <div class="img-band reveal-on-scroll">
   <img
     src="https://images.pexels.com/photos/26988601/pexels-photo-26988601.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=500&w=1400"
@@ -43,7 +40,6 @@ include '../header.php';
   <span class="img-band-caption">The path forward becomes clear when the whole is finally seen.</span>
 </div>
 
-<!-- TRADITION -->
 <section class="body-content reveal-on-scroll" style="background:var(--bg-warm);">
   <div class="container">
     <div class="gold-rule"></div>
@@ -52,31 +48,17 @@ include '../header.php';
   </div>
 </section>
 
-<!-- QUOTE PULL -->
 <section class="quote-pull reveal-on-scroll">
   <blockquote>
     The body that no longer performs as it should. The decision that keeps returning without resolution. The relationship carrying more weight than it was built to hold. None of this resolves by itself.
   </blockquote>
 </section>
 
-<!-- WHAT IS ADDRESSED -->
 <section class="body-content reveal-on-scroll">
   <div class="container">
     <div class="gold-rule"></div>
     <p>The body that no longer performs as it should. The decision that keeps returning without resolution. The relationship carrying more weight than it was built to hold. The moment where everything built must now become something else. The knowledge that changes not what you know — but how you see.</p>
     <p>None of this resolves by itself. And the longer it remains unaddressed, the more it costs — in energy, in clarity, in the quality of what gets built next.</p>
-  </div>
-</section>
-
-<!-- NAV between pages -->
-<section class="cta-section reveal-on-scroll">
-  <div class="container">
-    <p class="eyebrow">Continue</p>
-    <h2>From the mandate to the foundation.</h2>
-    <p>Understanding why this practice exists is the beginning. Understanding how it works is what follows.</p>
-    <a href="/the-practice/foundation" class="btn-gold">Explore the Foundation</a>
-    &nbsp;&nbsp;
-    <a href="/the-practice/engagement" class="btn-outline" style="margin-top:1rem">The Engagement →</a>
   </div>
 </section>
 
