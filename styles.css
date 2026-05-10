@@ -395,8 +395,8 @@ h5 {
 .has-dropdown:hover .nav-top::after,
 .has-dropdown.dropdown-open .nav-top::after { width: 100%; }
 
-.nav-top.nav-active { color: var(--gold); }
-.nav-top.nav-active::after { width: 100%; background: var(--gold); }
+.nav-top.nav-active { color: var(--gold); font-weight: 500; }
+.nav-top.nav-active::after { width: 100%; height: 2px; background: var(--gold); }
 
 /* Chevron */
 .nav-chevron {
@@ -404,6 +404,10 @@ h5 {
   flex-shrink: 0;
   stroke: currentColor;
   opacity: 0.65;
+  cursor: pointer;
+  padding: 6px 4px;
+  margin: -6px -4px;
+  box-sizing: content-box;
 }
 .has-dropdown.dropdown-open .nav-chevron,
 .has-dropdown:hover .nav-chevron {
@@ -769,6 +773,20 @@ h5 {
 .mob-link:hover,
 .mob-link.mob-active { color: var(--gold); }
 
+.mob-link.mob-active {
+  position: relative;
+  padding-left: 1.2rem;
+}
+.mob-link.mob-active::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 50%;
+  transform: translateY(-50%);
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
 .mob-group { border-bottom: 1px solid var(--border); }
 
 .mob-group-toggle {
@@ -826,6 +844,18 @@ h5 {
 
 .mob-sub li a:hover,
 .mob-sub li a.mob-active { color: var(--gold); }
+
+.mob-sub li a.mob-active {
+  position: relative;
+}
+.mob-sub li a.mob-active::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 50%;
+  transform: translateY(-50%);
+  width: 8px; height: 1px;
+  background: var(--gold);
+}
 
 .mob-inquiry {
   font-family: var(--sans) !important;
