@@ -6,27 +6,15 @@ $ogImage   = "https://chronexis.com/og-image.php";
 include 'header.php';
 ?>
 
-<!-- HERO -->
-<section class="hero">
+<!-- HERO HOME -->
+<section class="hero-home reveal-on-scroll">
   <img
-    class="hero-img"
+    class="hero-home-bg"
     src="https://cdn.jsdelivr.net/gh/bengoug/chronexis2@main/images/IMG_5285.JPG"
     alt="Person seated on rock by still water — presence, stillness, the whole self"
     width="1800" height="1200"
+    loading="eager"
   >
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <h1 id="hero-title" aria-label="Your private advisor for every dimension of your world.">
-      <span class="hero-word">Your</span>
-      <span class="hero-word"> private</span>
-      <span class="hero-word"> advisor</span>
-      <span class="hero-word"> for</span>
-      <span class="hero-word"> every</span>
-      <span class="hero-word"> dimension</span>
-      <span class="hero-word"> of</span>
-      <span class="hero-word"> your world.</span>
-    </h1>
-  </div>
 </section>
 
 <!-- OPENING QUOTE -->
@@ -161,14 +149,5 @@ include 'header.php';
     </div>
   </div>
 </section>
-
-<script>
-(function() {
-  var words = document.querySelectorAll('.hero-word');
-  words.forEach(function(w, i) {
-    setTimeout(function() { w.classList.add('visible'); }, 120 + i * 140);
-  });
-})();
-</script>
 
 <?php include 'footer.php'; ?>

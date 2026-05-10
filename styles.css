@@ -1,7 +1,7 @@
 /* ============================================
    CHRONEXIS — LIGHT EDITORIAL CSS
    Wu Xing · Confucius · Tao
-   Version 3.3 — Brand subtitle fix
+   Version 3.6 — Homepage Hero final fix
    ============================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap');
@@ -395,8 +395,8 @@ h5 {
 .has-dropdown:hover .nav-top::after,
 .has-dropdown.dropdown-open .nav-top::after { width: 100%; }
 
-.nav-top.nav-active { color: var(--gold); font-weight: 500; }
-.nav-top.nav-active::after { width: 100%; height: 2px; background: var(--gold); }
+.nav-top.nav-active { color: var(--gold); }
+.nav-top.nav-active::after { width: 100%; background: var(--gold); }
 
 /* Chevron */
 .nav-chevron {
@@ -404,10 +404,6 @@ h5 {
   flex-shrink: 0;
   stroke: currentColor;
   opacity: 0.65;
-  cursor: pointer;
-  padding: 6px 4px;
-  margin: -6px -4px;
-  box-sizing: content-box;
 }
 .has-dropdown.dropdown-open .nav-chevron,
 .has-dropdown:hover .nav-chevron {
@@ -773,20 +769,6 @@ h5 {
 .mob-link:hover,
 .mob-link.mob-active { color: var(--gold); }
 
-.mob-link.mob-active {
-  position: relative;
-  padding-left: 1.2rem;
-}
-.mob-link.mob-active::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 50%;
-  transform: translateY(-50%);
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--gold);
-}
-
 .mob-group { border-bottom: 1px solid var(--border); }
 
 .mob-group-toggle {
@@ -845,18 +827,6 @@ h5 {
 .mob-sub li a:hover,
 .mob-sub li a.mob-active { color: var(--gold); }
 
-.mob-sub li a.mob-active {
-  position: relative;
-}
-.mob-sub li a.mob-active::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 50%;
-  transform: translateY(-50%);
-  width: 8px; height: 1px;
-  background: var(--gold);
-}
-
 .mob-inquiry {
   font-family: var(--sans) !important;
   font-size: 0.72rem !important;
@@ -874,75 +844,36 @@ h5 {
 }
 
 /* ══════════════════════════════════════════════
-   HERO — Homepage pleine image
+   HERO HOME — Homepage Hero consolidated
 ══════════════════════════════════════════════ */
-.hero {
+.hero-home {
   position: relative;
-  min-height: 100svh;
+  width: 100%;
+  background: var(--bg);
+  padding-top: calc(var(--nav-h) + 6rem);
+  padding-bottom: 4rem;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-  margin-top: 3px;
 }
 
-.hero-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 30%;
-  filter: brightness(0.78) saturate(0.9);
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    170deg,
-    rgba(250,249,246,0.04) 0%,
-    rgba(250,249,246,0.0) 45%,
-    rgba(250,249,246,0.50) 78%,
-    rgba(250,249,246,0.94) 100%
-  );
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  padding: clamp(3rem, 8vw, 7rem) var(--section-px);
-  padding-top: 0;
-}
-
-.hero-content h1 {
-  color: var(--text);
-  max-width: 860px;
-  margin-bottom: 1.8rem;
-}
-
-.hero-tagline {
-  font-family: var(--sans);
-  font-size: 0.7rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 0.8rem;
+.hero-home-bg {
   display: block;
+  width: 100%;
+  height: auto;
+  max-width: 1400px;
+  margin: 0 auto;
+  box-shadow: var(--shadow-lg);
 }
 
-.hero-word {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(30px);
-  transition:
-    opacity   0.95s var(--ease),
-    transform 0.95s var(--ease);
-}
-
-.hero-word.visible {
-  opacity: 1;
-  transform: translateY(0);
+/* ══════════════════════════════════════════════
+   RESPONSIVE — 768px
+══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .hero-home {
+    padding-top: calc(var(--nav-h) + 3rem);
+  }
 }
 
 /* ══════════════════════════════════════════════
@@ -1291,28 +1222,6 @@ h5 {
   color: var(--gold);
   margin-top: 2rem;
   font-style: normal;
-}
-
-/* ══════════════════════════════════════════════
-   HERO HOME
-══════════════════════════════════════════════ */
-.hero-home {
-  position: relative;
-  width: 100%;
-  background: var(--bg);
-  padding: 2rem 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.hero-home-bg {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-width: 1800px;
-  margin: 0 auto;
 }
 
 /* ══════════════════════════════════════════════
@@ -1973,4 +1882,34 @@ h5 {
 
   .footer-links { flex-wrap: wrap; gap: 1.2rem; justify-content: center; }
   .serena-portrait { aspect-ratio: 1/1; }
+}
+
+/* ══════════════════════════════════════════════
+   HERO HOME — Homepage Hero consolidated at end
+══════════════════════════════════════════════ */
+.hero-home {
+  position: relative;
+  width: 100%;
+  background: var(--bg);
+  padding-top: calc(var(--nav-h) + 6rem);
+  padding-bottom: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-home-bg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 1400px;
+  margin: 0 auto;
+  box-shadow: var(--shadow-lg);
+}
+
+@media (max-width: 768px) {
+  .hero-home {
+    padding-top: calc(var(--nav-h) + 3rem);
+  }
 }
