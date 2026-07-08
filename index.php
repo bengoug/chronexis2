@@ -10,7 +10,7 @@ include 'header.php';
 <section class="hero-home reveal-on-scroll">
   <img
     class="hero-home-bg"
-    src="https://cdn.jsdelivr.net/gh/bengoug/chronexis2@main/images/IMG_5285.JPG"
+    src="https://pixabay.com/get/gb8981fcf1713bf085a7589856487c3b9a728363cbfd22137e35df2b00d93c413f7e84909ef02bb762ce80808dfd6497d8f7679dff4e0823029f1a22b86e3fe27_1280.jpg"
     alt="Person seated on rock by still water — presence, stillness, the whole self"
     width="1800" height="1200"
     loading="eager"
@@ -127,7 +127,7 @@ include 'header.php';
     <div class="serena-inner">
       <div class="serena-portrait">
         <img
-          src="https://images.pexels.com/photos/8560805/pexels-photo-8560805.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800"
+          src="https://images.pexels.com/photos/29815908/pexels-photo-29815908.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800"
           alt="Serena Du Roch — founder of Chronexis"
           width="800" height="1200" loading="lazy"
         >
